@@ -96,9 +96,12 @@ npx serve .
    git remote add origin https://github.com/<用户名>/<仓库名>.git
    git push -u origin main
    ```
-2. 仓库 **Settings → Pages → Build and deployment → Source** 选 **GitHub Pages**。
-   （仓库里已带 `.github/workflows/pages.yml`，推送到 `main` 会自动部署；也可以直接选 `Deploy from a branch / main / root` 的静态方式，二选一即可。）
-3. 几分钟后访问 `https://<用户名>.github.io/<仓库名>/`。
+2. 仓库 **Settings → Pages → Build and deployment**：
+   - **Source** 选 **Deploy from a branch**
+   - **Branch** 选 `main`、**Folder** 选 `/ (root)`
+   - 点 **Save**
+   （纯静态站，根目录就是 `index.html`，之后每次 push 到 `main` 都会自动重新部署。）
+3. 一两分钟后访问 `https://<用户名>.github.io/<仓库名>/`。
 
 也可以部署到任意静态托管：Vercel（`npx vercel --prod`）、Cloudflare Pages（`npx wrangler pages deploy .`）、Netlify（拖拽目录）。
 
@@ -110,7 +113,7 @@ style.css    UI 样式
 game.js      全部游戏逻辑与 Canvas 渲染
 i18n.js      中英文文案（新增语言只需加一份同结构对象）
 favicon.svg  站点图标
-.github/workflows/pages.yml   自动部署到 GitHub Pages
+.nojekyll    禁用 Jekyll 处理（Pages 从分支部署时需要）
 ```
 
 ## 技术栈 / Tech
