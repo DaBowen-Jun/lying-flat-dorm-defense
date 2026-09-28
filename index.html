@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="theme-color" content="#141a36" />
+<meta name="description" content="躺平发育 / Lying Flat: Dorm Defense — 一款纯前端塔防小游戏：躺在床上赚金币，造 31 种建筑，挡住 15 波猛鬼，每 5 关还要迎战一个王。" />
+<meta property="og:title" content="躺平发育 · Lying Flat: Dorm Defense" />
+<meta property="og:description" content="躺着睡觉涨金币，建炮台挡猛鬼。纯网页、免安装、开源。" />
+<meta property="og:type" content="website" />
+<link rel="icon" href="favicon.svg" type="image/svg+xml" />
+<title>躺平发育 · Lying Flat: Dorm Defense</title>
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<div id="app">
+  <header id="hud">
+    <div class="stat">
+      <span class="ico">💰</span>
+      <div>
+        <b id="gold">0</b>
+        <small id="income">+0/s</small>
+      </div>
+    </div>
+    <div class="stat">
+      <span class="ico">⚡</span>
+      <div>
+        <b id="power">0 / 0</b>
+        <small id="powerTip" data-i18n="ui.powerOk">电力充足</small>
+      </div>
+    </div>
+    <div class="stat">
+      <span class="ico">🌊</span>
+      <div>
+        <b id="wave">0 / 15</b>
+        <small id="waveTip" data-i18n="ui.waveReady">准备中</small>
+      </div>
+    </div>
+    <div class="stat king hidden" id="kingStat">
+      <span class="ico">👑</span>
+      <div>
+        <b id="kingInfo">0</b>
+        <small data-i18n="ui.kingAlive">王在场</small>
+      </div>
+    </div>
+    <div class="stat hp">
+      <span class="ico">❤️</span>
+      <div class="door-wrap">
+        <b><span id="hp">1500</span> / <span id="hpMax">1500</span></b>
+        <div class="bar"><i id="bar" style="width:100%"></i></div>
+      </div>
+    </div>
+    <div class="tools">
+      <button id="btnSpeed" class="tool" title="加速 (空格)">▶ 1x</button>
+      <button id="btnPause" class="tool" title="暂停 (P)" data-i18n="ui.pause">⏸ 暂停</button>
+      <button id="btnLang" class="tool langbtn" title="切换语言 (L)">EN 🌐</button>
+    </div>
+  </header>
+
+  <main id="stage">
+    <canvas id="game"></canvas>
+    <div id="hint">整个房间随你布置：点击下方建筑后在空地放置，点已有建筑可升级/拆除</div>
+    <aside id="panel" class="hidden">
+      <div class="p-head"><canvas id="pIco" width="34" height="34"></canvas><span id="pName">炮台</span><span id="pLv">Lv.1</span></div>
+      <div class="p-body">
+        <div id="pDesc"></div>
+        <button id="pUp" class="p-btn primary"><span data-i18n="ui.upgrade">升级</span> 💰<b id="pUpCost">0</b></button>
+        <button id="pSell" class="p-btn"><span data-i18n="ui.sell">拆除</span> ♻️<b id="pSellBack">0</b></button>
+      </div>
+    </aside>
+  </main>
+
+  <div id="tabs" class="tabs"></div>
+  <footer id="dock"></footer>
+
+  <div id="overlay" class="show">
+    <div class="modal">
+      <h1 data-i18n="start.title">躺平发育</h1>
+      <p class="sub" data-i18n="start.sub">整间宿舍都是你的地盘 · 网页版</p>
+      <ul class="rules">
+        <li data-i18n-html="start.r1">🛏️ 你躺在<b>左下角的床</b>上躺平发育，每秒自动涨金币，升级床收益更高。</li>
+        <li data-i18n-html="start.r2">🚪 猛鬼会从<b>右侧三扇房门</b>冲进来啃你的床，床被掀翻就输了。</li>
+        <li data-i18n-html="start.r3">🏗️ 整间宿舍随便造：<b>31 种建筑</b>（攻击 / 防御 / 经济 / 电力 / 辅助），<b>每种都能升到 12 级</b>，注意电力上限。</li>
+        <li data-i18n-html="start.r4">👑 <b>每 5 关降临一个王</b>：血量 = 关卡数 × 100，<b>原地不动</b>，每 5 秒产出 <b>关卡数 × 2</b> 只小鬼，打不死就一直在。</li>
+        <li data-i18n-html="start.r5">🌊 撑过 <b>15 波</b> 即可躺赢，之后可进入无尽模式。</li>
+      </ul>
+      <div class="keys" data-i18n-html="start.keys">快捷键：<kbd>1~0</kbd> 前 10 项 · <kbd>Esc</kbd> 取消 · <kbd>空格</kbd> 加速 · <kbd>P</kbd> 暂停 · <kbd>L</kbd> 切换语言</div>
+      <button id="btnStart" class="start" data-i18n="start.btn">开始躺平</button>
+      <button class="langbtn">EN 🌐</button>
+    </div>
+  </div>
+
+  <div id="result" class="hidden">
+    <div class="modal">
+      <h1 id="rTitle">被抓走了…</h1>
+      <p id="rSub" class="sub"></p>
+      <ul class="rules" id="rStats"></ul>
+      <button id="btnAgain" class="start">再躺一局</button>
+      <button class="langbtn">EN 🌐</button>
+    </div>
+  </div>
+
+  <div id="tip" class="tip"></div>
+  <div id="coach" class="hidden">
+    <div class="modal coach-modal">
+      <div class="coach-step" id="coachStep">1 / 4</div>
+      <div class="coach-body" id="coachBody"></div>
+      <button id="coachNext" class="start">下一步 →</button>
+    </div>
+  </div>
+</div>
+<script src="i18n.js"></script>
+<script src="game.js"></script>
+</body>
+</html>

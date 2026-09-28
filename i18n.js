@@ -1,0 +1,181 @@
+/* 躺平发育 · 多语言文案（中文 / English）
+ * 所有 UI 文本都从这里取，方便新增语言：复制一份 zh 结构即可。
+ */
+window.I18N = {
+  zh: {
+    b: {
+      turret: '炮台', sniper: '狙击塔', flame: '火焰塔', frost: '冰霜塔', tesla: '电磁塔',
+      trap: '陷阱板', barrier: '路障', mine: '矿机', vault: '金库', gen: '发电机',
+      medic: '医疗站', workshop: '维修间', shield: '护盾器',
+      bomb: '炸弹桶', poison: '毒气塔', beam: '聚能塔', magnet: '磁暴塔', field: '滞缓力场',
+      drone: '无人机', decoy: '诱饵床', bank: '利息银行', transformer: '变压器',
+      spikes: '尖刺地板', portal: '传送门', freezer: '急冻仓', clock: '时钟塔', guard: '保安',
+      amplifier: '增幅器', radar: '雷达', critcore: '暴击核心', spotlight: '聚光灯'
+    },
+    d: {
+      turret: '单体伤害 <b>{dmg}</b> · <b>{rate}</b> 发/秒',
+      sniper: '超远程射线 <b>{dmg}</b> 伤害，优先狙杀最靠近床的猛鬼',
+      flame: '扇形喷射，每秒 <b>{rate}</b> 次 × <b>{dmg}</b> 灼烧',
+      frost: '命中减速至 <b>{slowPct}%</b>，持续 1.5 秒',
+      tesla: '闪电连锁 <b>{jumps}</b> 个目标，递减伤害',
+      trap: '猛鬼踩到即触发 <b>{dmg}</b> 伤害',
+      barrier: '堵住通道，猛鬼必须先拆掉它（<b>{hp}</b> 耐久）',
+      mine: '产出 <b>{gain}</b> 金币/秒',
+      vault: '全体收益 <b>+{boostPct}%</b>（含躺平收益）',
+      gen: '电力上限 <b>+{supply}</b>',
+      medic: '每 3 秒修复床位 <b>{heal}</b> 点',
+      workshop: '范围内攻击塔射速 <b>+{hastePct}%</b>',
+      shield: '床位上限 <b>+{add}</b> · 每秒自愈 <b>{regen}</b>',
+      bomb: '定时引爆：范围内全体受到 <b>{dmg}</b> 伤害',
+      poison: '毒云笼罩，持续 <b>{dps}</b> 伤害/秒，中毒 3 秒',
+      beam: '持续射线 <b>{dmg}</b> 伤害/秒，锁定越久越烫（最高 +54%）',
+      magnet: '脉冲击退 + 短暂眩晕，附加 <b>{dmg}</b> 伤害',
+      field: '力场内猛鬼速度降至 <b>{slowMulPct}%</b>，持续生效',
+      drone: '飞行单位，自动追击开火：<b>{dmg}</b> × <b>{rate}</b> 发/秒',
+      decoy: '吸引 3 格内猛鬼优先来啃（<b>{hp}</b> 耐久）',
+      bank: '按当前存款每秒生息 <b>{bankPct}%</b>（复利）',
+      transformer: '全体建筑耗电 <b>-{savePct}%</b>',
+      spikes: '踩上去持续掉血 <b>{dps}</b> 伤害/秒（一直踩就一直掉）',
+      portal: '定期把推进最深的 <b>{count}</b> 只猛鬼传送回门口重走',
+      freezer: '定期冻结范围内猛鬼 <b>{freeze}</b> 秒（完全无法动弹）',
+      clock: '每 18 秒全场慢放至 <b>{slowmoPct}%</b> 速度，持续 4 秒',
+      guard: '近战肉盾：<b>{dmg}</b> 伤害 · <b>{hp}</b> 耐久，阵亡 8 秒后复活',
+      amplifier: '范围内攻击塔伤害 <b>+{ampPct}%</b>',
+      radar: '全场所有塔射程 <b>+{rrangePct}%</b>',
+      critcore: '全场攻击 <b>{critPct}%</b> 概率打出 3 倍暴击',
+      spotlight: '标记范围内猛鬼，其受到的所有伤害 <b>+{markPct}%</b>'
+    },
+    ui: {
+      powerOk: '电力充足', powerLow: '电力不足 · 部分停机',
+      waveReady: '准备中', waveNext: '下一波 {n}s', waveLeft: '剩余 {n} 只', over: '结束',
+      kingAlive: '王在场 · 打不死就一直在',
+      bedUp: '升级床', bedMax: '满级床', fix: '修床', fortify: '加固床',
+      placeHint: '放置【{name}】：点击空地确认 · 右键/Esc 取消',
+      idleHint: '整个房间随你布置：点击下方建筑后在空地放置，点已有建筑可升级/拆除',
+      nextLv: '下一级：', maxed: '已满级',
+      rangePower: '射程 {r} 格 · 耗电 {u}',
+      upgrade: '升级', sell: '拆除',
+      pause: '⏸ 暂停', resume: '▶ 继续'
+    },
+    toast: {
+      noBuild: '这里不能建造', noGold: '金币不足', maxed: '已满级',
+      bedMaxed: '已是满级大床', bedLv: '床铺升级 Lv.{n}',
+      fixed: '修床 +35%', fortified: '床位加固 +300 上限', recycle: '回收 +{n}',
+      waveIn: '第 {n} 波来袭{boss}', bossTag: ' · BOSS!', cleared: '第 {n} 波清空 +{b}',
+      wallDown: '路障被拆了！', furniture: '这是家具，挪不走', decoyDown: '诱饵床被撕碎了！',
+      guardDown: '保安被放倒了，8 秒后回来',
+      kingIn: '👑 第 {n} 关之王降临！{hp} 血 · 每 5 秒产 {spawn} 只小鬼',
+      kingSpawn: '👑 王产下 {n} 只小鬼！'
+    },
+    fx: { crit: '暴击!' },
+    start: {
+      title: '躺平发育', sub: '整间宿舍都是你的地盘 · 网页版',
+      r1: '🛏️ 你躺在<b>左下角的床</b>上躺平发育，每秒自动涨金币，升级床收益更高。',
+      r2: '🚪 猛鬼会从<b>右侧三扇房门</b>冲进来啃你的床，床被掀翻就输了。',
+      r3: '🏗️ 整间宿舍随便造：<b>31 种建筑</b>（攻击 / 防御 / 经济 / 电力 / 辅助），<b>每种都能升到 12 级</b>，注意电力上限。',
+      r4: '👑 <b>每 5 关降临一个王</b>：血量 = 关卡数 × 100，<b>原地不动</b>，每 5 秒产出 <b>关卡数 × 2</b> 只小鬼，打不死就一直在。',
+      r5: '🌊 撑过 <b>15 波</b> 即可躺赢，之后可进入无尽模式。',
+      keys: '快捷键：<kbd>1~0</kbd> 前 10 项 · <kbd>Esc</kbd> 取消 · <kbd>空格</kbd> 加速 · <kbd>P</kbd> 暂停 · 右键取消',
+      btn: '开始躺平'
+    },
+    res: {
+      winTitle: '躺赢啦！', loseTitle: '被抓走了…',
+      winSub: '15 波猛鬼全部击退，继续躺平发育', loseSub: '你的床在第 {n} 波被掀翻',
+      s1: '🌊 坚持波次：<b>{wave}</b> / {max}',
+      s2: '💀 击退猛鬼：<b>{kills}</b> 只',
+      s3: '💰 累计金币：<b>{gold}</b>',
+      s4: '🛏️ 床铺等级：<b>Lv.{bed}</b> · 建筑 <b>{build}</b> 座',
+      again: '再躺一局', endless: '继续无尽模式'
+    }
+  },
+
+  en: {
+    b: {
+      turret: 'Turret', sniper: 'Sniper', flame: 'Flamethrower', frost: 'Frost Tower',
+      tesla: 'Tesla Coil', trap: 'Trap Plate', barrier: 'Barrier', mine: 'Gold Mine',
+      vault: 'Vault', gen: 'Generator', medic: 'Med Station', workshop: 'Workshop',
+      shield: 'Shield',
+      bomb: 'Bomb Barrel', poison: 'Gas Tower', beam: 'Focus Beam', magnet: 'Magnet Coil',
+      field: 'Slow Field', drone: 'Drone', decoy: 'Decoy Bed', bank: 'Interest Bank',
+      transformer: 'Transformer',
+      spikes: 'Spike Floor', portal: 'Portal', freezer: 'Freezer', clock: 'Clock Tower',
+      guard: 'Guard', amplifier: 'Amplifier', radar: 'Radar', critcore: 'Crit Core',
+      spotlight: 'Spotlight'
+    },
+    d: {
+      turret: 'Single-target <b>{dmg}</b> damage · <b>{rate}</b> shots/s',
+      sniper: 'Long-range beam, <b>{dmg}</b> damage; prioritises the ghost nearest your bed',
+      flame: 'Cone spray: <b>{rate}</b> hits/s × <b>{dmg}</b> burn',
+      frost: 'Slows the target to <b>{slowPct}%</b> speed for 1.5s',
+      tesla: 'Chain lightning across <b>{jumps}</b> targets, damage decays',
+      trap: 'Deals <b>{dmg}</b> damage when a ghost steps on it',
+      barrier: 'Blocks the path — ghosts must destroy it first (<b>{hp}</b> HP)',
+      mine: 'Generates <b>{gain}</b> gold/s',
+      vault: 'All income <b>+{boostPct}%</b> (lying-flat income included)',
+      gen: 'Power capacity <b>+{supply}</b>',
+      medic: 'Repairs <b>{heal}</b> bed HP every 3s',
+      workshop: 'Attack speed <b>+{hastePct}%</b> for towers in range',
+      shield: 'Bed max HP <b>+{add}</b> · regen <b>{regen}</b>/s',
+      bomb: 'Detonates on a timer: <b>{dmg}</b> damage to everything in range',
+      poison: 'Gas cloud dealing <b>{dps}</b> damage/s, poison lasts 3s',
+      beam: 'Sustained beam <b>{dmg}</b> damage/s — the longer it locks on, the hotter it gets (up to +54%)',
+      magnet: 'Pulse knockback + brief stun, plus <b>{dmg}</b> damage',
+      field: 'Ghosts inside move at <b>{slowMulPct}%</b> speed, permanently while in range',
+      drone: 'Flying unit that chases and fires on its own: <b>{dmg}</b> × <b>{rate}</b> shots/s',
+      decoy: 'Lures ghosts within 3 tiles to attack it first (<b>{hp}</b> HP)',
+      bank: 'Earns <b>{bankPct}%</b> interest per second on your current gold (compounding)',
+      transformer: 'All buildings use <b>{savePct}% less</b> power',
+      spikes: 'Bleeds anything standing on it for <b>{dps}</b> damage/s',
+      portal: 'Periodically sends the <b>{count}</b> deepest ghost(s) back to the door',
+      freezer: 'Periodically freezes ghosts in range for <b>{freeze}</b>s (fully immobile)',
+      clock: 'Every 18s slows the whole room to <b>{slowmoPct}%</b> speed for 4s',
+      guard: 'Melee tank: <b>{dmg}</b> damage · <b>{hp}</b> HP, respawns 8s after falling',
+      amplifier: 'Attack towers in range deal <b>+{ampPct}%</b> damage',
+      radar: 'Every tower gains <b>+{rrangePct}%</b> range',
+      critcore: 'All attacks have a <b>{critPct}%</b> chance to crit for 3× damage',
+      spotlight: 'Marks ghosts in range — they take <b>+{markPct}%</b> damage from everything'
+    },
+    ui: {
+      powerOk: 'Power OK', powerLow: 'Low power · offline',
+      waveReady: 'Get ready', waveNext: 'Next wave in {n}s', waveLeft: '{n} left', over: 'Game over',
+      kingAlive: 'King on field · stays until killed',
+      bedUp: 'Upgrade Bed', bedMax: 'Bed MAX', fix: 'Repair', fortify: 'Fortify',
+      placeHint: 'Placing {name} — click an empty tile · right-click / Esc to cancel',
+      idleHint: 'The whole room is yours: pick a build below, click an empty tile to place; click a building to upgrade or sell',
+      nextLv: 'Next: ', maxed: 'MAX level',
+      rangePower: 'Range {r} tiles · Power {u}',
+      upgrade: 'Upgrade', sell: 'Sell',
+      pause: '⏸ Pause', resume: '▶ Resume'
+    },
+    toast: {
+      noBuild: 'Cannot build here', noGold: 'Not enough gold', maxed: 'MAX level',
+      bedMaxed: 'Bed is already maxed', bedLv: 'Bed upgraded to Lv.{n}',
+      fixed: 'Bed repaired +35%', fortified: 'Bed fortified: +300 max HP', recycle: 'Recycled +{n}',
+      waveIn: 'Wave {n} incoming{boss}', bossTag: ' · BOSS!', cleared: 'Wave {n} cleared +{b}',
+      wallDown: 'Barrier destroyed!', furniture: "That's furniture, it won't budge",
+      decoyDown: 'Decoy bed shredded!', guardDown: 'Guard is down — back in 8s',
+      kingIn: '👑 King of wave {n} arrives! {hp} HP · spawns {spawn} ghosts every 5s',
+      kingSpawn: '👑 The King spawned {n} ghosts!'
+    },
+    fx: { crit: 'CRIT!' },
+    start: {
+      title: 'Lying Flat: Dorm Defense', sub: 'The whole dorm is your turf · Web edition',
+      r1: '🛏️ Lie on the <b>bed at the bottom-left</b> and earn gold every second — upgrade the bed for higher income.',
+      r2: '🚪 Ghosts storm in through the <b>three doors on the right</b> and chew on your bed. If the bed gets flipped over, you lose.',
+      r3: '🏗️ Build anywhere in the dorm: <b>31 building types</b> (attack / defence / economy / power / support), <b>each upgradable to Lv.12</b>. Watch your power cap.',
+      r4: '👑 <b>Every 5th wave a King arrives</b>: HP = wave × 100, <b>immobile</b>, spawns <b>wave × 2</b> ghosts every 5s, and stays until killed.',
+      r5: '🌊 Survive <b>15 waves</b> to win, then continue into Endless Mode.',
+      keys: 'Hotkeys: <kbd>1~0</kbd> first 10 items · <kbd>Esc</kbd> cancel · <kbd>Space</kbd> speed · <kbd>P</kbd> pause · right-click cancel',
+      btn: 'Start Lying Flat'
+    },
+    res: {
+      winTitle: 'You Out-lied Them!', loseTitle: 'Dragged Away…',
+      winSub: 'All 15 waves repelled — keep lying flat', loseSub: 'Your bed was flipped over on wave {n}',
+      s1: '🌊 Waves survived: <b>{wave}</b> / {max}',
+      s2: '💀 Ghosts defeated: <b>{kills}</b>',
+      s3: '💰 Total gold earned: <b>{gold}</b>',
+      s4: '🛏️ Bed level: <b>Lv.{bed}</b> · Buildings: <b>{build}</b>',
+      again: 'Play Again', endless: 'Endless Mode'
+    }
+  }
+};
