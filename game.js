@@ -26,8 +26,12 @@
   }
   function applyLang() {
     document.documentElement.lang = LANG === 'zh' ? 'zh-CN' : 'en';
-    document.querySelectorAll('[data-i18n]').forEach(n => {
-      const v = pick(T(), n.dataset.i18n);
+    // 注意：data-i18n 与 data-i18n-html 是两个不同的属性名，
+    // 只查 [data-i18n] 会漏掉那些「只标了 data-i18n-html」的节点（例如开局弹窗的 5 条规则）。
+    document.querySelectorAll('[data-i18n],[data-i18n-html]').forEach(n => {
+      const path = n.dataset.i18n || n.dataset.i18nHtml;
+      if (!path) return;
+      const v = pick(T(), path);
       if (v === undefined) return;
       if (n.hasAttribute('data-i18n-html')) n.innerHTML = v; else n.textContent = v;
     });
